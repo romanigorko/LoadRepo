@@ -1,0 +1,19 @@
+function loadOneItem(id, iblock)
+{
+    $("#preLoad").load(
+        ajaxPath + "/table.php",
+        { iblock: iblock, id: id, template: "one_item" },
+        function ()
+        {
+            $("#dev-table")
+                .find("tr.reports-list-item:first")
+                .before($("#preLoad").html());
+            $("#preLoad")
+                .find("tr")
+                .remove();
+            $("input.edit:checkbox").prop("checked", false);
+            forTable();
+            newItem = false;
+        }
+    );
+}
